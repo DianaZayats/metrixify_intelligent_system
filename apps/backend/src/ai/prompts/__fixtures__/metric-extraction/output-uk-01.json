@@ -1,0 +1,42 @@
+{
+  "metrics": [
+    {
+      "candidate_key": "wake_time_quality",
+      "title": "Wake time quality",
+      "value_type": "ordinal",
+      "value_number": 2,
+      "value_text": null,
+      "value_boolean": null,
+      "unit": null,
+      "scale_min": 1,
+      "scale_max": 5,
+      "evidence_text": "пізно прокинувся",
+      "confidence": 0.72,
+      "reasoning": null,
+      "observed_date": null,
+      "observed_at": null,
+      "observed_at_precision": "inferred",
+      "narrative_order": 1,
+      "tags": ["routine", "sleep"]
+    },
+    {
+      "candidate_key": "wellbeing",
+      "title": "Wellbeing",
+      "value_type": "ordinal",
+      "value_number": 3,
+      "value_text": null,
+      "value_boolean": null,
+      "unit": null,
+      "scale_min": 1,
+      "scale_max": 5,
+      "evidence_text": "почувався не дуже",
+      "confidence": 0.78,
+      "reasoning": null,
+      "observed_date": null,
+      "observed_at": null,
+      "observed_at_precision": "inferred",
+      "narrative_order": 2,
+      "tags": ["mood", "mental-health"]
+    }
+  ]
+}

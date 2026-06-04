@@ -1,0 +1,245 @@
+{
+  "personaId": "peanut-rash-quick",
+  "days": [
+    {
+      "date": "2026-01-01",
+      "text": "День пройшов без особливих подій, окрім кількох деталей. Під час прогулянки з'їв горішки.",
+      "signals": {
+        "nuts_consumed": true,
+        "skin_rash_occurred": false
+      }
+    },
+    {
+      "date": "2026-01-02",
+      "text": "Після роботи трохи часу для себе. Вечеря була простою, без перекусів.",
+      "signals": {
+        "nuts_consumed": false,
+        "skin_rash_occurred": false
+      }
+    },
+    {
+      "date": "2026-01-03",
+      "text": "Після роботи трохи часу для себе. Трохи втомився, але без інших симптомів.",
+      "signals": {
+        "nuts_consumed": false,
+        "skin_rash_occurred": false
+      }
+    },
+    {
+      "date": "2026-01-05",
+      "text": "Зранку все було звично. Вечеря була простою, без перекусів.",
+      "signals": {
+        "nuts_consumed": false,
+        "skin_rash_occurred": false
+      }
+    },
+    {
+      "date": "2026-01-10",
+      "text": "Сьогодні день був спокійний. Обід був звичайний, без солодощів чи горіхів.",
+      "signals": {
+        "nuts_consumed": false,
+        "skin_rash_occurred": false
+      }
+    },
+    {
+      "date": "2026-01-12",
+      "text": "Сьогодні день був спокійний. Перекусив горіхами під час обіду.",
+      "signals": {
+        "nuts_consumed": true,
+        "skin_rash_occurred": false
+      }
+    },
+    {
+      "date": "2026-01-13",
+      "text": "Зранку все було звично. Трохи втомився, але без інших симптомів. Шкіра на зап'ястях почала свербіти і з'явився висип.",
+      "signals": {
+        "nuts_consumed": false,
+        "skin_rash_occurred": true
+      }
+    },
+    {
+      "date": "2026-01-14",
+      "text": "Сьогодні день був спокійний. Ввечері був перекус з арахісом. Помітив висип на шкірі рук.",
+      "signals": {
+        "nuts_consumed": true,
+        "skin_rash_occurred": true
+      }
+    },
+    {
+      "date": "2026-01-16",
+      "text": "Після роботи трохи часу для себе. Ввечері був перекус з арахісом. На шкірі з'явилися червоні плями.",
+      "signals": {
+        "nuts_consumed": true,
+        "skin_rash_occurred": true
+      }
+    },
+    {
+      "date": "2026-01-17",
+      "text": "Після роботи трохи часу для себе. Вечеря була простою, без перекусів.",
+      "signals": {
+        "nuts_consumed": false,
+        "skin_rash_occurred": false
+      }
+    },
+    {
+      "date": "2026-01-18",
+      "text": "Після роботи трохи часу для себе. Трохи втомився, але без інших симптомів.",
+      "signals": {
+        "nuts_consumed": false,
+        "skin_rash_occurred": false
+      }
+    },
+    {
+      "date": "2026-01-19",
+      "text": "Після роботи трохи часу для себе. Ввечері був перекус з арахісом. Висип на шкірі став помітнішим до вечора.",
+      "signals": {
+        "nuts_consumed": true,
+        "skin_rash_occurred": true
+      }
+    },
+    {
+      "date": "2026-01-21",
+      "text": "День пройшов без особливих подій, окрім кількох деталей. Перекусив горіхами під час обіду. Висип на шкірі став помітнішим до вечора.",
+      "signals": {
+        "nuts_consumed": true,
+        "skin_rash_occurred": true
+      }
+    },
+    {
+      "date": "2026-01-22",
+      "text": "Після роботи трохи часу для себе. Під час прогулянки з'їв горішки.",
+      "signals": {
+        "nuts_consumed": true,
+        "skin_rash_occurred": false
+      }
+    },
+    {
+      "date": "2026-01-26",
+      "text": "День пройшов без особливих подій, окрім кількох деталей. Трохи втомився, але без інших симптомів.",
+      "signals": {
+        "nuts_consumed": false,
+        "skin_rash_occurred": false
+      }
+    },
+    {
+      "date": "2026-01-29",
+      "text": "Сьогодні день був спокійний. Обід був звичайний, без солодощів чи горіхів.",
+      "signals": {
+        "nuts_consumed": false,
+        "skin_rash_occurred": false
+      }
+    },
+    {
+      "date": "2026-01-30",
+      "text": "Зранку все було звично. Вечеря була простою, без перекусів.",
+      "signals": {
+        "nuts_consumed": false,
+        "skin_rash_occurred": false
+      }
+    },
+    {
+      "date": "2026-01-31",
+      "text": "Сьогодні день був спокійний. Провів час на свіжому повітрі.",
+      "signals": {
+        "nuts_consumed": false,
+        "skin_rash_occurred": false
+      }
+    },
+    {
+      "date": "2026-02-01",
+      "text": "Після роботи трохи часу для себе. Ввечері був перекус з арахісом. На шкірі з'явилися червоні плями.",
+      "signals": {
+        "nuts_consumed": true,
+        "skin_rash_occurred": true
+      }
+    },
+    {
+      "date": "2026-02-02",
+      "text": "День пройшов без особливих подій, окрім кількох деталей. Обід був звичайний, без солодощів чи горіхів.",
+      "signals": {
+        "nuts_consumed": false,
+        "skin_rash_occurred": false
+      }
+    },
+    {
+      "date": "2026-02-03",
+      "text": "Після роботи трохи часу для себе. Під час прогулянки з'їв горішки. На шкірі з'явилися червоні плями.",
+      "signals": {
+        "nuts_consumed": true,
+        "skin_rash_occurred": true
+      }
+    },
+    {
+      "date": "2026-02-04",
+      "text": "Сьогодні день був спокійний. Перекусив горіхами під час обіду. На шкірі з'явилися червоні плями.",
+      "signals": {
+        "nuts_consumed": true,
+        "skin_rash_occurred": true
+      }
+    },
+    {
+      "date": "2026-02-06",
+      "text": "Після роботи трохи часу для себе. На полудні з'їв горішкову суміш. Шкіра на зап'ястях почала свербіти і з'явився висип.",
+      "signals": {
+        "nuts_consumed": true,
+        "skin_rash_occurred": true
+      }
+    },
+    {
+      "date": "2026-02-07",
+      "text": "Зранку все було звично. Трохи втомився, але без інших симптомів.",
+      "signals": {
+        "nuts_consumed": false,
+        "skin_rash_occurred": false
+      }
+    },
+    {
+      "date": "2026-02-08",
+      "text": "День пройшов без особливих подій, окрім кількох деталей. Під час прогулянки з'їв горішки.",
+      "signals": {
+        "nuts_consumed": true,
+        "skin_rash_occurred": false
+      }
+    },
+    {
+      "date": "2026-02-09",
+      "text": "Після роботи трохи часу для себе. Обід був звичайний, без солодощів чи горіхів.",
+      "signals": {
+        "nuts_consumed": false,
+        "skin_rash_occurred": false
+      }
+    },
+    {
+      "date": "2026-02-10",
+      "text": "Після роботи трохи часу для себе. Провів час на свіжому повітрі.",
+      "signals": {
+        "nuts_consumed": false,
+        "skin_rash_occurred": false
+      }
+    },
+    {
+      "date": "2026-02-11",
+      "text": "День пройшов без особливих подій, окрім кількох деталей. Провів час на свіжому повітрі.",
+      "signals": {
+        "nuts_consumed": false,
+        "skin_rash_occurred": false
+      }
+    },
+    {
+      "date": "2026-02-12",
+      "text": "Після роботи трохи часу для себе. Ввечері був перекус з арахісом. Висип на шкірі став помітнішим до вечора.",
+      "signals": {
+        "nuts_consumed": true,
+        "skin_rash_occurred": true
+      }
+    },
+    {
+      "date": "2026-02-14",
+      "text": "День пройшов без особливих подій, окрім кількох деталей. Ввечері був перекус з арахісом. Висип на шкірі став помітнішим до вечора.",
+      "signals": {
+        "nuts_consumed": true,
+        "skin_rash_occurred": true
+      }
+    }
+  ]
+}

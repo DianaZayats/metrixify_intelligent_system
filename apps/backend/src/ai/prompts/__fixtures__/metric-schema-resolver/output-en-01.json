@@ -1,0 +1,20 @@
+{
+  "decisions": [
+    {
+      "observation_id": "obs_mood_1",
+      "action": "link_existing",
+      "target_metric_id": "def_wellbeing",
+      "alias_to_add": "Mood",
+      "confidence": 0.91,
+      "reasoning": "Same subjective wellbeing scale"
+    },
+    {
+      "observation_id": "obs_sleep_1",
+      "action": "keep_new",
+      "target_metric_id": null,
+      "alias_to_add": null,
+      "confidence": 0.88,
+      "reasoning": "Sleep duration is distinct from sleep quality"
+    }
+  ]
+}

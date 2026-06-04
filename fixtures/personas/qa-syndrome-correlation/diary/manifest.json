@@ -1,0 +1,444 @@
+{
+  "personaId": "qa-syndrome-correlation",
+  "description": "Days 26–55: dense sleep/stress/caffeine/symptoms for correlation overlap (14+ paired days).",
+  "plantedPatterns": [
+    {
+      "pair": "stress_level ↔ symptom severity",
+      "lag": 0
+    },
+    {
+      "pair": "sleep duration ↔ symptoms",
+      "lag": 1
+    },
+    {
+      "pair": "caffeine ↔ stress",
+      "lag": 0
+    },
+    {
+      "pair": "fast food (yesterday mention) ↔ symptoms",
+      "lag": 1
+    }
+  ],
+  "days": [
+    {
+      "date": "2026-03-26",
+      "dayNum": 26,
+      "text": "День 26 (2026-03-26): Сон 5,4 годин. Стрес помірний, на рівні звичайного. Енергія нижче середньої. Кави не пив. Симптоми помірні, 4 із 10. Прогулянка 25–30 хвилин.",
+      "signals": {
+        "night_sleep_duration_minutes": 324,
+        "stress_level": "mid",
+        "acute_energy_level": "low",
+        "caffeine_intake": 0,
+        "evening_discomfort": 4,
+        "daytime_walk_occurred": true,
+        "fast_food_yesterday": false
+      }
+    },
+    {
+      "date": "2026-03-27",
+      "dayNum": 27,
+      "text": "День 27 (2026-03-27): Сон 5,2 годин. Стрес високий, вищий за звичайний. Енергія нижче середньої. 2 чашки кави до обіду. Симптоми 8 із 10, ввечері був помітний дискомфорт. Активності майже не було.",
+      "signals": {
+        "night_sleep_duration_minutes": 312,
+        "stress_level": "high",
+        "acute_energy_level": "low",
+        "caffeine_intake": 2,
+        "evening_discomfort": 8,
+        "daytime_walk_occurred": false,
+        "fast_food_yesterday": false
+      }
+    },
+    {
+      "date": "2026-03-28",
+      "dayNum": 28,
+      "text": "День 28 (2026-03-28): Сон 5,8 годин. Стрес високий, вищий за звичайний. Енергія нижче середньої. 2 чашки кави до обіду. Симптоми 8 із 10, ввечері був помітний дискомфорт. Прогулянка 25–30 хвилин.",
+      "signals": {
+        "night_sleep_duration_minutes": 348,
+        "stress_level": "high",
+        "acute_energy_level": "low",
+        "caffeine_intake": 2,
+        "evening_discomfort": 8,
+        "daytime_walk_occurred": true,
+        "fast_food_yesterday": false
+      }
+    },
+    {
+      "date": "2026-03-29",
+      "dayNum": 29,
+      "text": "День 29 (2026-03-29): Сон 6,8 годин. Стрес високий, вищий за звичайний. Енергія нижче середньої. Одна чашка кави до обіду. Симптоми 9 із 10, ввечері був помітний дискомфорт. Вчора ввечері був фастфуд — бургер і картопля. Прогулянка 25–30 хвилин.",
+      "signals": {
+        "night_sleep_duration_minutes": 408,
+        "stress_level": "high",
+        "acute_energy_level": "low",
+        "caffeine_intake": 1,
+        "evening_discomfort": 9,
+        "daytime_walk_occurred": true,
+        "fast_food_yesterday": true
+      }
+    },
+    {
+      "date": "2026-03-30",
+      "dayNum": 30,
+      "text": "День 30 (2026-03-30): Сон 5,8 годин. Стрес помірний, на рівні звичайного. Енергія середня. Одна чашка кави до обіду. Симптоми помірні, 4 із 10. Вчора ввечері був алкоголь, без пізньої вечері. Активності майже не було.",
+      "signals": {
+        "night_sleep_duration_minutes": 348,
+        "stress_level": "mid",
+        "acute_energy_level": "mid",
+        "caffeine_intake": 1,
+        "evening_discomfort": 4,
+        "daytime_walk_occurred": false,
+        "fast_food_yesterday": false
+      }
+    },
+    {
+      "date": "2026-03-31",
+      "dayNum": 31,
+      "text": "День 31 (2026-03-31): Сон 4,8 годин. Стрес високий, вищий за звичайний. Енергія нижче середньої. Кави не пив. Симптоми 8 із 10, ввечері був помітний дискомфорт. Вчора ввечері був фастфуд — бургер і картопля. Прогулянка 25–30 хвилин.",
+      "signals": {
+        "night_sleep_duration_minutes": 288,
+        "stress_level": "high",
+        "acute_energy_level": "low",
+        "caffeine_intake": 0,
+        "evening_discomfort": 8,
+        "daytime_walk_occurred": true,
+        "fast_food_yesterday": true
+      }
+    },
+    {
+      "date": "2026-04-01",
+      "dayNum": 32,
+      "text": "День 32 (2026-04-01): Сон 6,8 годин. Стрес високий, вищий за звичайний. Енергія нижче середньої. Кави не пив. Симптоми 7 із 10, ввечері був помітний дискомфорт. Прогулянка 25–30 хвилин.",
+      "signals": {
+        "night_sleep_duration_minutes": 408,
+        "stress_level": "high",
+        "acute_energy_level": "low",
+        "caffeine_intake": 0,
+        "evening_discomfort": 7,
+        "daytime_walk_occurred": true,
+        "fast_food_yesterday": false
+      }
+    },
+    {
+      "date": "2026-04-02",
+      "dayNum": 33,
+      "text": "День 33 (2026-04-02): Сон 8,8 годин. Стрес низький, без сильної тривожності. Енергія вище середньої. Одна чашка кави до обіду. Симптоми слабкі, 2 із 10, майже не заважали. Активності майже не було. Їжа спокійна, без експериментів.",
+      "signals": {
+        "night_sleep_duration_minutes": 528,
+        "stress_level": "low",
+        "acute_energy_level": "high",
+        "caffeine_intake": 1,
+        "evening_discomfort": 2,
+        "daytime_walk_occurred": false,
+        "fast_food_yesterday": false
+      }
+    },
+    {
+      "date": "2026-04-03",
+      "dayNum": 34,
+      "text": "День 34 (2026-04-03): Сон 7,8 годин. Стрес високий, вищий за звичайний. Енергія нижче середньої. 3 чашки кави до обіду. Симптоми 6 із 10, ввечері був помітний дискомфорт. Прогулянка 25–30 хвилин.",
+      "signals": {
+        "night_sleep_duration_minutes": 468,
+        "stress_level": "high",
+        "acute_energy_level": "low",
+        "caffeine_intake": 3,
+        "evening_discomfort": 6,
+        "daytime_walk_occurred": true,
+        "fast_food_yesterday": false
+      }
+    },
+    {
+      "date": "2026-04-04",
+      "dayNum": 35,
+      "text": "День 35 (2026-04-04): Сон 5,2 годин. Стрес помірний, на рівні звичайного. Енергія нижче середньої. Одна чашка кави до обіду. Симптоми помірні, 4 із 10. Прогулянка 25–30 хвилин.",
+      "signals": {
+        "night_sleep_duration_minutes": 312,
+        "stress_level": "mid",
+        "acute_energy_level": "low",
+        "caffeine_intake": 1,
+        "evening_discomfort": 4,
+        "daytime_walk_occurred": true,
+        "fast_food_yesterday": false
+      }
+    },
+    {
+      "date": "2026-04-05",
+      "dayNum": 36,
+      "text": "День 36 (2026-04-05): Сон 5,8 годин. Стрес високий, вищий за звичайний. Енергія нижче середньої. Кави не пив. Симптоми 8 із 10, ввечері був помітний дискомфорт. Вчора ввечері був фастфуд — бургер і картопля. Активності майже не було.",
+      "signals": {
+        "night_sleep_duration_minutes": 348,
+        "stress_level": "high",
+        "acute_energy_level": "low",
+        "caffeine_intake": 0,
+        "evening_discomfort": 8,
+        "daytime_walk_occurred": false,
+        "fast_food_yesterday": true
+      }
+    },
+    {
+      "date": "2026-04-06",
+      "dayNum": 37,
+      "text": "День 37 (2026-04-06): Сон 7 годин. Стрес низький, без сильної тривожності. Енергія вище середньої. Кави не пив. Симптоми слабкі, 2 із 10, майже не заважали. Прогулянка 25–30 хвилин. Їжа спокійна, без експериментів.",
+      "signals": {
+        "night_sleep_duration_minutes": 420,
+        "stress_level": "low",
+        "acute_energy_level": "high",
+        "caffeine_intake": 0,
+        "evening_discomfort": 2,
+        "daytime_walk_occurred": true,
+        "fast_food_yesterday": false
+      }
+    },
+    {
+      "date": "2026-04-07",
+      "dayNum": 38,
+      "text": "День 38 (2026-04-07): Сон 6,8 годин. Стрес помірний, на рівні звичайного. Енергія середня. Кави не пив. Симптоми помірні, 3 із 10. Прогулянка 25–30 хвилин.",
+      "signals": {
+        "night_sleep_duration_minutes": 408,
+        "stress_level": "mid",
+        "acute_energy_level": "mid",
+        "caffeine_intake": 0,
+        "evening_discomfort": 3,
+        "daytime_walk_occurred": true,
+        "fast_food_yesterday": false
+      }
+    },
+    {
+      "date": "2026-04-08",
+      "dayNum": 39,
+      "text": "День 39 (2026-04-08): Сон 7,8 годин. Стрес високий, вищий за звичайний. Енергія нижче середньої. 2 чашки кави до обіду. Симптоми 8 із 10, ввечері був помітний дискомфорт. Вчора ввечері був алкоголь, без пізньої вечері. Активності майже не було.",
+      "signals": {
+        "night_sleep_duration_minutes": 468,
+        "stress_level": "high",
+        "acute_energy_level": "low",
+        "caffeine_intake": 2,
+        "evening_discomfort": 8,
+        "daytime_walk_occurred": false,
+        "fast_food_yesterday": false
+      }
+    },
+    {
+      "date": "2026-04-09",
+      "dayNum": 40,
+      "text": "День 40 (2026-04-09): Сон 7,8 годин. Стрес високий, вищий за звичайний. Енергія нижче середньої. 2 чашки кави до обіду. Симптоми 6 із 10, ввечері був помітний дискомфорт. Прогулянка 25–30 хвилин.",
+      "signals": {
+        "night_sleep_duration_minutes": 468,
+        "stress_level": "high",
+        "acute_energy_level": "low",
+        "caffeine_intake": 2,
+        "evening_discomfort": 6,
+        "daytime_walk_occurred": true,
+        "fast_food_yesterday": false
+      }
+    },
+    {
+      "date": "2026-04-10",
+      "dayNum": 41,
+      "text": "День 41 (2026-04-10): Сон 5,4 годин. Стрес помірний, на рівні звичайного. Енергія нижче середньої. Одна чашка кави до обіду. Симптоми помірні, 4 із 10. Прогулянка 25–30 хвилин.",
+      "signals": {
+        "night_sleep_duration_minutes": 324,
+        "stress_level": "mid",
+        "acute_energy_level": "low",
+        "caffeine_intake": 1,
+        "evening_discomfort": 4,
+        "daytime_walk_occurred": true,
+        "fast_food_yesterday": false
+      }
+    },
+    {
+      "date": "2026-04-11",
+      "dayNum": 42,
+      "text": "День 42 (2026-04-11): Сон 5,8 годин. Стрес високий, вищий за звичайний. Енергія нижче середньої. Одна чашка кави до обіду. Симптоми 8 із 10, ввечері був помітний дискомфорт. Вчора ввечері був фастфуд — бургер і картопля. Активності майже не було.",
+      "signals": {
+        "night_sleep_duration_minutes": 348,
+        "stress_level": "high",
+        "acute_energy_level": "low",
+        "caffeine_intake": 1,
+        "evening_discomfort": 8,
+        "daytime_walk_occurred": false,
+        "fast_food_yesterday": true
+      }
+    },
+    {
+      "date": "2026-04-12",
+      "dayNum": 43,
+      "text": "День 43 (2026-04-12): Сон 7 годин. Стрес низький, без сильної тривожності. Енергія вище середньої. Кави не пив. Симптоми слабкі, 2 із 10, майже не заважали. Вчора ввечері був фастфуд — бургер і картопля. Прогулянка 25–30 хвилин. Їжа спокійна, без експериментів.",
+      "signals": {
+        "night_sleep_duration_minutes": 420,
+        "stress_level": "low",
+        "acute_energy_level": "high",
+        "caffeine_intake": 0,
+        "evening_discomfort": 2,
+        "daytime_walk_occurred": true,
+        "fast_food_yesterday": true
+      }
+    },
+    {
+      "date": "2026-04-13",
+      "dayNum": 44,
+      "text": "День 44 (2026-04-13): Сон 5,8 годин. Стрес помірний, на рівні звичайного. Енергія середня. Кави не пив. Симптоми помірні, 3 із 10. Прогулянка 25–30 хвилин.",
+      "signals": {
+        "night_sleep_duration_minutes": 348,
+        "stress_level": "mid",
+        "acute_energy_level": "mid",
+        "caffeine_intake": 0,
+        "evening_discomfort": 3,
+        "daytime_walk_occurred": true,
+        "fast_food_yesterday": false
+      }
+    },
+    {
+      "date": "2026-04-14",
+      "dayNum": 45,
+      "text": "День 45 (2026-04-14): Сон 7,8 годин. Стрес високий, вищий за звичайний. Енергія нижче середньої. 2 чашки кави до обіду. Симптоми 8 із 10, ввечері був помітний дискомфорт. Активності майже не було.",
+      "signals": {
+        "night_sleep_duration_minutes": 468,
+        "stress_level": "high",
+        "acute_energy_level": "low",
+        "caffeine_intake": 2,
+        "evening_discomfort": 8,
+        "daytime_walk_occurred": false,
+        "fast_food_yesterday": false
+      }
+    },
+    {
+      "date": "2026-04-15",
+      "dayNum": 46,
+      "text": "День 46 (2026-04-15): Сон 6,4 годин. Стрес високий, вищий за звичайний. Енергія нижче середньої. 3 чашки кави до обіду. Симптоми 6 із 10, ввечері був помітний дискомфорт. Прогулянка 25–30 хвилин.",
+      "signals": {
+        "night_sleep_duration_minutes": 384,
+        "stress_level": "high",
+        "acute_energy_level": "low",
+        "caffeine_intake": 3,
+        "evening_discomfort": 6,
+        "daytime_walk_occurred": true,
+        "fast_food_yesterday": false
+      }
+    },
+    {
+      "date": "2026-04-16",
+      "dayNum": 47,
+      "text": "День 47 (2026-04-16): Сон 6,8 годин. Стрес помірний, на рівні звичайного. Енергія середня. Одна чашка кави до обіду. Симптоми помірні, 4 із 10. Прогулянка 25–30 хвилин.",
+      "signals": {
+        "night_sleep_duration_minutes": 408,
+        "stress_level": "mid",
+        "acute_energy_level": "mid",
+        "caffeine_intake": 1,
+        "evening_discomfort": 4,
+        "daytime_walk_occurred": true,
+        "fast_food_yesterday": false
+      }
+    },
+    {
+      "date": "2026-04-17",
+      "dayNum": 48,
+      "text": "День 48 (2026-04-17): Сон 5,8 годин. Стрес помірний, на рівні звичайного. Енергія середня. Кави не пив. Симптоми помірні, 4 із 10. Вчора ввечері був алкоголь, без пізньої вечері. Активності майже не було.",
+      "signals": {
+        "night_sleep_duration_minutes": 348,
+        "stress_level": "mid",
+        "acute_energy_level": "mid",
+        "caffeine_intake": 0,
+        "evening_discomfort": 4,
+        "daytime_walk_occurred": false,
+        "fast_food_yesterday": false
+      }
+    },
+    {
+      "date": "2026-04-18",
+      "dayNum": 49,
+      "text": "День 49 (2026-04-18): Сон 5,8 годин. Стрес високий, вищий за звичайний. Енергія нижче середньої. Кави не пив. Симптоми 6 із 10, ввечері був помітний дискомфорт. Прогулянка 25–30 хвилин.",
+      "signals": {
+        "night_sleep_duration_minutes": 348,
+        "stress_level": "high",
+        "acute_energy_level": "low",
+        "caffeine_intake": 0,
+        "evening_discomfort": 6,
+        "daytime_walk_occurred": true,
+        "fast_food_yesterday": false
+      }
+    },
+    {
+      "date": "2026-04-19",
+      "dayNum": 50,
+      "text": "День 50 (2026-04-19): Сон 7,8 годин. Стрес низький, без сильної тривожності. Енергія вище середньої. Кави не пив. Симптоми слабкі, 1 із 10, майже не заважали. Вчора ввечері був фастфуд — бургер і картопля. Прогулянка 25–30 хвилин. Їжа спокійна, без експериментів.",
+      "signals": {
+        "night_sleep_duration_minutes": 468,
+        "stress_level": "low",
+        "acute_energy_level": "high",
+        "caffeine_intake": 0,
+        "evening_discomfort": 1,
+        "daytime_walk_occurred": true,
+        "fast_food_yesterday": true
+      }
+    },
+    {
+      "date": "2026-04-20",
+      "dayNum": 51,
+      "text": "День 51 (2026-04-20): Сон 5,2 годин. Стрес високий, вищий за звичайний. Енергія нижче середньої. 2 чашки кави до обіду. Симптоми 6 із 10, ввечері був помітний дискомфорт. Активності майже не було.",
+      "signals": {
+        "night_sleep_duration_minutes": 312,
+        "stress_level": "high",
+        "acute_energy_level": "low",
+        "caffeine_intake": 2,
+        "evening_discomfort": 6,
+        "daytime_walk_occurred": false,
+        "fast_food_yesterday": false
+      }
+    },
+    {
+      "date": "2026-04-21",
+      "dayNum": 52,
+      "text": "День 52 (2026-04-21): Сон 5,8 годин. Стрес високий, вищий за звичайний. Енергія нижче середньої. 2 чашки кави до обіду. Симптоми 8 із 10, ввечері був помітний дискомфорт. Прогулянка 25–30 хвилин.",
+      "signals": {
+        "night_sleep_duration_minutes": 348,
+        "stress_level": "high",
+        "acute_energy_level": "low",
+        "caffeine_intake": 2,
+        "evening_discomfort": 8,
+        "daytime_walk_occurred": true,
+        "fast_food_yesterday": false
+      }
+    },
+    {
+      "date": "2026-04-22",
+      "dayNum": 53,
+      "text": "День 53 (2026-04-22): Сон 7,8 годин. Стрес низький, без сильної тривожності. Енергія вище середньої. Одна чашка кави до обіду. Симптоми слабкі, 2 із 10, майже не заважали. Вчора ввечері був фастфуд — бургер і картопля. Прогулянка 25–30 хвилин. Їжа спокійна, без експериментів.",
+      "signals": {
+        "night_sleep_duration_minutes": 468,
+        "stress_level": "low",
+        "acute_energy_level": "high",
+        "caffeine_intake": 1,
+        "evening_discomfort": 2,
+        "daytime_walk_occurred": true,
+        "fast_food_yesterday": true
+      }
+    },
+    {
+      "date": "2026-04-23",
+      "dayNum": 54,
+      "text": "День 54 (2026-04-23): Сон 5,8 годин. Стрес помірний, на рівні звичайного. Енергія середня. Одна чашка кави до обіду. Симптоми помірні, 3 із 10. Активності майже не було.",
+      "signals": {
+        "night_sleep_duration_minutes": 348,
+        "stress_level": "mid",
+        "acute_energy_level": "mid",
+        "caffeine_intake": 1,
+        "evening_discomfort": 3,
+        "daytime_walk_occurred": false,
+        "fast_food_yesterday": false
+      }
+    },
+    {
+      "date": "2026-04-24",
+      "dayNum": 55,
+      "text": "День 55 (2026-04-24): Сон 5,8 годин. Стрес високий, вищий за звичайний. Енергія нижче середньої. Кави не пив. Симптоми 6 із 10, ввечері був помітний дискомфорт. Прогулянка 25–30 хвилин.",
+      "signals": {
+        "night_sleep_duration_minutes": 348,
+        "stress_level": "high",
+        "acute_energy_level": "low",
+        "caffeine_intake": 0,
+        "evening_discomfort": 6,
+        "daytime_walk_occurred": true,
+        "fast_food_yesterday": false
+      }
+    }
+  ]
+}

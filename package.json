@@ -1,0 +1,62 @@
+{
+  "name": "metrixify",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Personal diary metrics and correlation MVP",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "build:packages": "npm run build -w @metrixify/config -w @metrixify/shared-types -w @metrixify/llm-payload-codec -w @metrixify/analytics-core -w @metrixify/design-tokens",
+    "env:setup": "tsx scripts/ensure-env.ts && tsx scripts/sync-env-ports.ts",
+    "app:dev": "npm run build:packages && npm run env:setup && npm run docker:up && concurrently -k -n backend,worker,bot,frontend -c blue,green,yellow,magenta \"npm run dev -w @metrixify/backend\" \"npm run dev -w @metrixify/worker\" \"npm run dev -w @metrixify/telegram-bot\" \"npm run dev -w @metrixify/frontend\"",
+    "docker:up": "docker compose up -d --wait",
+    "docker:down": "docker compose down",
+    "docker:reset": "docker compose down -v",
+    "db:reset": "npm run docker:reset && npm run docker:up && npm run db:migrate:deploy && npm run db:seed",
+    "docker:logs": "docker compose logs -f",
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run build:packages && npm run db:generate && npm run test --workspaces --if-present && vitest run scripts/persona/lib/verify.test.ts scripts/persona/lib/generator.test.ts",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:migrate:deploy": "prisma migrate deploy",
+    "db:seed": "prisma db seed",
+    "db:studio": "prisma studio",
+    "db:export:excel": "tsx scripts/export-db-to-excel.ts",
+    "persona:generate": "npm run build:packages && tsx scripts/persona/generate.ts",
+    "persona:analyze": "npm run build:packages && tsx scripts/persona/analyze.ts",
+    "demo:populate": "npm run build:packages && tsx scripts/demo/populate.ts",
+    "demo:seed-diploma": "npm run build:packages && tsx scripts/demo/seed-diploma-journal.ts",
+    "qa:audit-syndrome": "tsx scripts/qa/audit-syndrome-track.ts",
+    "qa:reprocess-syndrome": "npm run build:packages && tsx scripts/qa/reprocess-syndrome-track.ts",
+    "qa:backfill-entry-dates": "tsx scripts/qa/backfill-entry-dates-from-text.ts",
+    "qa:generate-syndrome-batch": "tsx scripts/qa/generate-syndrome-correlation-batch.ts",
+    "qa:seed-syndrome-batch": "npm run build:packages && tsx scripts/qa/seed-syndrome-correlation-batch.ts",
+    "seed:demo-entries": "npm run build:packages && tsx scripts/seed-demo-entries.ts",
+    "smoke:analytics-11a": "tsx scripts/smoke-analytics-11a.ts",
+    "postinstall": "prisma generate"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.28.0",
+    "@types/node": "^22.15.29",
+    "concurrently": "^9.1.2",
+    "dotenv": "^16.5.0",
+    "eslint": "^9.28.0",
+    "globals": "^16.2.0",
+    "prettier": "^3.5.3",
+    "prisma": "^6.8.2",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.33.1",
+    "vitest": "^3.2.1",
+    "xlsx": "^0.18.5",
+    "yaml": "^2.9.0"
+  }
+}

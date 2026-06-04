@@ -1,0 +1,54 @@
+id: qa-syndrome-correlation
+locale: uk
+timezone: Europe/Kyiv
+start_date: 2026-03-26
+calendar_days: 30
+diary_format: daily_structured
+
+metrics:
+  - key: evening_discomfort
+    title: Evening discomfort episode
+    value_type: ordinal
+    scale_min: 0
+    scale_max: 10
+  - key: night_sleep_duration_minutes
+    title: Night sleep duration
+    value_type: number
+    unit: minutes
+  - key: stress_level
+    title: Stress level
+    value_type: ordinal
+    scale_min: 1
+    scale_max: 10
+  - key: acute_energy_level
+    title: Energy level
+    value_type: ordinal
+    scale_min: 1
+    scale_max: 5
+  - key: caffeine_intake
+    title: Caffeine intake
+    value_type: number
+  - key: daytime_walk_occurred
+    title: Daytime walk occurred
+    value_type: boolean
+
+latent_patterns:
+  - type: ordinal_correlation
+    metric_a: stress_level
+    metric_b: evening_discomfort
+    lag_days: 0
+    target_min_r: 0.35
+  - type: number_to_ordinal
+    metric_a: night_sleep_duration_minutes
+    metric_b: evening_discomfort
+    lag_days: 1
+    target_min_r: -0.3
+  - type: number_correlation
+    metric_a: caffeine_intake
+    metric_b: stress_level
+    lag_days: 0
+    target_min_r: 0.3
+
+narrative_rules:
+  never_state_diagnosis: true
+  daily_checklist: sleep_stress_energy_caffeine_symptoms

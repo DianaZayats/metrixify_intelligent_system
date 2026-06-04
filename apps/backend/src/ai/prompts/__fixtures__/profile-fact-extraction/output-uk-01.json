@@ -1,0 +1,34 @@
+{
+  "facts": [
+    {
+      "key": "job_title",
+      "value_text": "Works as a software developer",
+      "fact_type": "work",
+      "stability": "stable",
+      "evidence_text": "працюю розробником",
+      "confidence": 0.92,
+      "reasoning": "Explicit stable employment statement",
+      "operation": "create_fact"
+    },
+    {
+      "key": "pet_project_evening_habit",
+      "value_text": "Works on a personal pet project in the evenings",
+      "fact_type": "habit",
+      "stability": "evolving",
+      "evidence_text": "працюю над pet-проєктом",
+      "confidence": 0.85,
+      "reasoning": "Recurring personal project habit",
+      "operation": "create_fact"
+    },
+    {
+      "key": "today_anxiety",
+      "value_text": "Felt anxious today",
+      "fact_type": "health_context",
+      "stability": "temporary",
+      "evidence_text": "сьогодні тривожно",
+      "confidence": 0.8,
+      "reasoning": "Temporary mood state",
+      "operation": "skip"
+    }
+  ]
+}

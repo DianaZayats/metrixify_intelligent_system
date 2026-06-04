@@ -1,0 +1,505 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [vector]
+}
+
+// --- Enums ---
+
+enum SourceType {
+  text
+  voice
+  manual
+}
+
+enum ProcessingStatus {
+  received
+  transcribing
+  transcribed
+  summarizing
+  extracting_metrics
+  resolving_schema
+  extracting_facts
+  saving_results
+  completed
+  failed
+}
+
+enum MetricValueType {
+  number
+  ordinal
+  boolean
+  category
+}
+
+enum MetricDefinitionStatus {
+  active
+  archived
+}
+
+enum PositiveDirection {
+  higher_is_better
+  lower_is_better
+  neutral
+}
+
+enum ProfileFactType {
+  work
+  health_context
+  routine
+  preference
+  habit
+  goal
+  constraint
+  personal_context
+}
+
+enum ProfileFactStability {
+  stable
+  evolving
+  temporary
+}
+
+enum ProfileFactStatus {
+  active
+  archived
+  outdated
+}
+
+enum AiRunType {
+  transcription
+  summary
+  metric_extraction
+  schema_resolver
+  fact_extraction
+  fact_patch
+  embedding
+  insights_generation
+}
+
+enum AiValidationStatus {
+  valid
+  invalid
+  partial
+}
+
+enum InputFormat {
+  json
+  toon
+}
+
+enum CorrelationMethod {
+  pearson
+  spearman
+}
+
+enum StrengthLabel {
+  negligible
+  weak
+  moderate
+  strong
+}
+
+enum ProcessingJobStatus {
+  pending
+  active
+  completed
+  failed
+}
+
+enum CreatedBy {
+  ai
+  user
+  system
+}
+
+enum TelegramConversationRole {
+  user
+  bot
+}
+
+enum TelegramConversationTurnType {
+  diary_user
+  diary_summary
+  correction_user
+  correction_ack
+  system
+}
+
+// --- Models ---
+
+model User {
+  id        String   @id @default(cuid())
+  timezone  String   @default("UTC")
+  locale    String   @default("en")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  telegramAccounts   TelegramAccount[]
+  sessions           Session[]
+  loginTokens        LoginToken[]
+  diaryEntries       DiaryEntry[]
+  entrySources       EntrySource[]
+  aiRuns             AiRun[]
+  metricDefinitions  MetricDefinition[]
+  metricObservations MetricObservation[]
+  profileFacts       ProfileFact[]
+  memoryChunks       MemoryChunk[]
+  correlationResults CorrelationResult[]
+  insightReports     InsightReport[]
+  processingJobs     ProcessingJob[]
+  telegramConversationTurns TelegramConversationTurn[]
+
+  @@map("users")
+}
+
+model TelegramAccount {
+  id             String   @id @default(cuid())
+  userId         String   @map("user_id")
+  telegramUserId BigInt   @unique @map("telegram_user_id")
+  username       String?
+  firstName      String?  @map("first_name")
+  lastName       String?  @map("last_name")
+  languageCode   String?  @map("language_code")
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("telegram_accounts")
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  tokenHash String   @unique @map("token_hash")
+  expiresAt DateTime @map("expires_at")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("sessions")
+}
+
+model LoginToken {
+  id         String    @id @default(cuid())
+  userId     String    @map("user_id")
+  tokenHash  String    @unique @map("token_hash")
+  expiresAt  DateTime  @map("expires_at")
+  consumedAt DateTime? @map("consumed_at")
+  createdAt  DateTime  @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("login_tokens")
+}
+
+model DiaryEntry {
+  id               String           @id @default(cuid())
+  userId           String           @map("user_id")
+  sourceType       SourceType       @map("source_type")
+  rawText          String?          @map("raw_text") @db.Text
+  transcriptText   String?          @map("transcript_text") @db.Text
+  summaryText      String?          @map("summary_text") @db.Text
+  entryDate        DateTime         @map("entry_date") @db.Date
+  processingStatus ProcessingStatus @default(received) @map("processing_status")
+  processingError  String?          @map("processing_error") @db.Text
+  metadataJson     Json?            @map("metadata_json")
+  createdAt        DateTime         @default(now()) @map("created_at")
+  updatedAt        DateTime         @updatedAt @map("updated_at")
+
+  user               User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  entrySources       EntrySource[]
+  aiRuns             AiRun[]
+  metricObservations MetricObservation[]
+  profileFactsFirst  ProfileFact[]       @relation("ProfileFactFirstSeen")
+  profileFactsLast   ProfileFact[]       @relation("ProfileFactLastSeen")
+  profileEvidence    ProfileFactEvidence[]
+  memoryChunks       MemoryChunk[]
+  processingJobs     ProcessingJob[]
+  metricDefsCreated  MetricDefinition[]  @relation("MetricDefinitionCreatedFrom")
+  telegramConversationTurns TelegramConversationTurn[]
+
+  @@index([userId, entryDate])
+  @@index([userId, processingStatus])
+  @@map("diary_entries")
+}
+
+model EntrySource {
+  id                String     @id @default(cuid())
+  userId            String     @map("user_id")
+  entryId           String     @map("entry_id")
+  sourceType        SourceType @map("source_type")
+  telegramMessageId BigInt?    @map("telegram_message_id")
+  telegramUpdateId  BigInt?    @map("telegram_update_id")
+  idempotencyKey    String     @unique @map("idempotency_key")
+  metadataJson      Json?      @map("metadata_json")
+  createdAt         DateTime   @default(now()) @map("created_at")
+
+  user  User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  entry DiaryEntry @relation(fields: [entryId], references: [id], onDelete: Cascade)
+
+  @@index([entryId])
+  @@index([userId])
+  @@map("entry_sources")
+}
+
+model PromptVersion {
+  id          String   @id @default(cuid())
+  promptKey   String   @map("prompt_key")
+  version     String
+  filePath    String   @map("file_path")
+  description String?  @db.Text
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  aiRuns AiRun[]
+
+  @@unique([promptKey, version])
+  @@map("prompt_versions")
+}
+
+model AiRun {
+  id               String             @id @default(cuid())
+  userId           String             @map("user_id")
+  entryId          String?            @map("entry_id")
+  promptVersionId  String?            @map("prompt_version_id")
+  runType          AiRunType          @map("run_type")
+  model            String
+  promptVersion    String?            @map("prompt_version_label")
+  inputFormat      InputFormat        @map("input_format")
+  inputSnapshot    Json?              @map("input_snapshot")
+  outputSnapshot   Json?              @map("output_snapshot")
+  validationStatus AiValidationStatus @default(valid) @map("validation_status")
+  appliedOpsJson   Json?              @map("applied_ops_json")
+  tokenUsageJson   Json?              @map("token_usage_json")
+  costEstimateJson Json?              @map("cost_estimate_json")
+  errorJson        Json?              @map("error_json")
+  createdAt        DateTime           @default(now()) @map("created_at")
+
+  user            User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  entry           DiaryEntry?    @relation(fields: [entryId], references: [id], onDelete: SetNull)
+  promptVersionRef PromptVersion? @relation(fields: [promptVersionId], references: [id], onDelete: SetNull)
+
+  @@index([userId, entryId])
+  @@index([runType])
+  @@map("ai_runs")
+}
+
+model MetricDefinition {
+  id                  String                 @id @default(cuid())
+  userId              String                 @map("user_id")
+  key                 String
+  title               String
+  description         String?                @db.Text
+  titleI18n           Json?                  @map("title_i18n")
+  descriptionI18n     Json?                  @map("description_i18n")
+  tagsI18n            Json?                  @map("tags_i18n")
+  valueType           MetricValueType        @map("value_type")
+  unit                String?
+  scaleMin            Float?                 @map("scale_min")
+  scaleMax            Float?                 @map("scale_max")
+  positiveDirection   PositiveDirection      @default(neutral) @map("positive_direction")
+  aliasesJson         Json                   @default("[]") @map("aliases_json")
+  tagsJson            Json                   @default("[]") @map("tags_json")
+  extractionRulesJson Json?                  @map("extraction_rules_json")
+  createdBy           CreatedBy              @default(ai) @map("created_by")
+  createdFromEntryId  String?                @map("created_from_entry_id")
+  confidence          Float?
+  version             Int                    @default(1)
+  status              MetricDefinitionStatus @default(active)
+  createdAt           DateTime               @default(now()) @map("created_at")
+  updatedAt           DateTime               @updatedAt @map("updated_at")
+
+  user               User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdFromEntry   DiaryEntry?         @relation("MetricDefinitionCreatedFrom", fields: [createdFromEntryId], references: [id], onDelete: SetNull)
+  observations       MetricObservation[]
+  correlationsAsA    CorrelationResult[] @relation("CorrelationMetricA")
+  correlationsAsB    CorrelationResult[] @relation("CorrelationMetricB")
+
+  @@unique([userId, key])
+  @@index([userId, status])
+  @@map("metric_definitions")
+}
+
+model MetricObservation {
+  id                  String   @id @default(cuid())
+  userId              String   @map("user_id")
+  entryId             String   @map("entry_id")
+  metricDefinitionId  String   @map("metric_definition_id")
+  observedAt          DateTime @map("observed_at")
+  periodStart         DateTime? @map("period_start")
+  periodEnd           DateTime? @map("period_end")
+  valueNumber         Float?   @map("value_number")
+  valueText           String?  @map("value_text")
+  valueBoolean        Boolean? @map("value_boolean")
+  confidence          Float?
+  evidenceText        String?  @map("evidence_text") @db.Text
+  source              String   @default("ai")
+  metadataJson        Json?    @map("metadata_json")
+  createdAt           DateTime @default(now()) @map("created_at")
+  updatedAt           DateTime @updatedAt @map("updated_at")
+
+  user             User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  entry            DiaryEntry       @relation(fields: [entryId], references: [id], onDelete: Cascade)
+  metricDefinition MetricDefinition @relation(fields: [metricDefinitionId], references: [id], onDelete: Cascade)
+
+  @@index([userId, metricDefinitionId, observedAt])
+  @@index([entryId])
+  @@map("metric_observations")
+}
+
+model ProfileFact {
+  id                String               @id @default(cuid())
+  userId            String               @map("user_id")
+  key               String
+  valueJson         Json                 @map("value_json")
+  valueI18n         Json?                @map("value_i18n")
+  factType          ProfileFactType      @map("fact_type")
+  stability         ProfileFactStability
+  confidence        Float?
+  status            ProfileFactStatus    @default(active)
+  firstSeenEntryId  String?              @map("first_seen_entry_id")
+  lastSeenEntryId   String?              @map("last_seen_entry_id")
+  evidenceCount     Int                  @default(0) @map("evidence_count")
+  validFrom         DateTime?            @map("valid_from")
+  validTo           DateTime?            @map("valid_to")
+  createdAt         DateTime             @default(now()) @map("created_at")
+  updatedAt         DateTime             @updatedAt @map("updated_at")
+
+  user            User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  firstSeenEntry  DiaryEntry?           @relation("ProfileFactFirstSeen", fields: [firstSeenEntryId], references: [id], onDelete: SetNull)
+  lastSeenEntry   DiaryEntry?           @relation("ProfileFactLastSeen", fields: [lastSeenEntryId], references: [id], onDelete: SetNull)
+  evidence        ProfileFactEvidence[]
+
+  @@unique([userId, key])
+  @@index([userId, status])
+  @@map("profile_facts")
+}
+
+model ProfileFactEvidence {
+  id            String   @id @default(cuid())
+  profileFactId String   @map("profile_fact_id")
+  entryId       String   @map("entry_id")
+  evidenceText  String   @map("evidence_text") @db.Text
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  profileFact ProfileFact @relation(fields: [profileFactId], references: [id], onDelete: Cascade)
+  entry       DiaryEntry  @relation(fields: [entryId], references: [id], onDelete: Cascade)
+
+  @@index([profileFactId])
+  @@index([entryId])
+  @@map("profile_fact_evidence")
+}
+
+model MemoryChunk {
+  id           String                     @id @default(cuid())
+  userId       String                     @map("user_id")
+  entryId      String?                    @map("entry_id")
+  chunkType    String                     @map("chunk_type")
+  content      String                     @db.Text
+  embedding    Unsupported("vector(1536)")?
+  metadataJson Json?                      @map("metadata_json")
+  createdAt    DateTime                   @default(now()) @map("created_at")
+  updatedAt    DateTime                   @updatedAt @map("updated_at")
+
+  user  User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  entry DiaryEntry? @relation(fields: [entryId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@map("memory_chunks")
+}
+
+model CorrelationResult {
+  id                String            @id @default(cuid())
+  userId            String            @map("user_id")
+  metricAId         String            @map("metric_a_id")
+  metricBId         String            @map("metric_b_id")
+  method            CorrelationMethod
+  lagDays           Int               @default(0) @map("lag_days")
+  sampleSize        Int               @map("sample_size")
+  correlationValue  Float             @map("correlation_value")
+  pValue            Float?            @map("p_value")
+  strengthLabel     StrengthLabel     @map("strength_label")
+  metadataJson      Json?             @map("metadata_json")
+  calculatedAt      DateTime          @default(now()) @map("calculated_at")
+
+  user    User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  metricA MetricDefinition @relation("CorrelationMetricA", fields: [metricAId], references: [id], onDelete: Cascade)
+  metricB MetricDefinition @relation("CorrelationMetricB", fields: [metricBId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, metricAId, metricBId, method, lagDays])
+  @@index([userId])
+  @@map("correlation_results")
+}
+
+model InsightReport {
+  id                      String   @id @default(cuid())
+  userId                  String   @map("user_id")
+  locale                  String
+  insightsJson            Json     @map("insights_json")
+  recommendationsJson     Json     @map("recommendations_json")
+  disclaimer              String?  @db.Text
+  inputSummaryJson        Json?    @map("input_summary_json")
+  correlationCalculatedAt DateTime? @map("correlation_calculated_at")
+  model                   String
+  promptVersion           String   @map("prompt_version")
+  aiRunId                 String?  @map("ai_run_id")
+  generatedAt             DateTime @default(now()) @map("generated_at")
+  createdAt               DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, generatedAt])
+  @@map("insight_reports")
+}
+
+model ProcessingJob {
+  id             String              @id @default(cuid())
+  userId         String              @map("user_id")
+  entryId        String              @map("entry_id")
+  jobType        String              @map("job_type")
+  status         ProcessingJobStatus @default(pending)
+  idempotencyKey String              @unique @map("idempotency_key")
+  bullmqJobId    String?             @map("bullmq_job_id")
+  processingStep String?             @map("processing_step")
+  errorJson      Json?               @map("error_json")
+  createdAt      DateTime            @default(now()) @map("created_at")
+  updatedAt      DateTime            @updatedAt @map("updated_at")
+
+  user  User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  entry DiaryEntry @relation(fields: [entryId], references: [id], onDelete: Cascade)
+
+  @@index([entryId])
+  @@index([status])
+  @@map("processing_jobs")
+}
+
+model TelegramConversationTurn {
+  id                 String                       @id @default(cuid())
+  userId             String                       @map("user_id")
+  chatId             BigInt                       @map("chat_id")
+  role               TelegramConversationRole
+  turnType           TelegramConversationTurnType @map("turn_type")
+  text               String                       @db.Text
+  telegramMessageId  BigInt?                      @map("telegram_message_id")
+  replyToMessageId   BigInt?                      @map("reply_to_message_id")
+  entryId            String?                      @map("entry_id")
+  createdAt          DateTime                     @default(now()) @map("created_at")
+
+  user  User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  entry DiaryEntry? @relation(fields: [entryId], references: [id], onDelete: SetNull)
+
+  @@unique([chatId, telegramMessageId])
+  @@index([userId, chatId, createdAt])
+  @@map("telegram_conversation_turns")
+}

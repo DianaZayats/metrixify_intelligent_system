@@ -1,0 +1,35 @@
+name: metrixify
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: metrixify-postgres
+    restart: unless-stopped
+    ports:
+      - '${POSTGRES_PORT:-5432}:5432'
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-metrixify}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-metrixify}
+      POSTGRES_DB: ${POSTGRES_DB:-metrixify}
+    volumes:
+      - metrixify_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER:-metrixify} -d ${POSTGRES_DB:-metrixify}']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    container_name: metrixify-redis
+    restart: unless-stopped
+    ports:
+      - '${REDIS_PORT:-6380}:6379'
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  metrixify_pg_data:

@@ -1,0 +1,11 @@
+required:
+  - metric_a: nuts_consumed
+    metric_b: skin_rash_occurred
+    method: pearson
+    lag_days: 0
+    min_r: 0.35
+    min_sample: 14
+
+optional: []
+
+extra_threshold: 0.3

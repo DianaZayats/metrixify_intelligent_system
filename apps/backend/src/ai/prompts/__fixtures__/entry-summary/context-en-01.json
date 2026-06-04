@@ -1,0 +1,20 @@
+{
+  "schema_version": "1",
+  "entry": {
+    "id": "entry-fixture-1",
+    "entry_date": "2026-05-19",
+    "source_type": "text",
+    "text": "Woke up at 10, feeling tired. Had coffee, went for a 20 min walk."
+  },
+  "user": {
+    "timezone": "UTC",
+    "preferred_locale": "en"
+  },
+  "recent_entries": [
+    {
+      "entry_date": "2026-05-18",
+      "summary": "Good sleep and morning workout."
+    }
+  ],
+  "existing_profile_facts": []
+}
