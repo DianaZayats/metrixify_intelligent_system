@@ -1,0 +1,7 @@
+# Production overlay: set in .env before `docker compose up`:
+#   POSTGRES_PORT=127.0.0.1:5432
+#   REDIS_PORT=127.0.0.1:6379
+# (Base compose maps ${POSTGRES_PORT}:5432 and ${REDIS_PORT}:6379.)
+services:
+  postgres: {}
+  redis: {}

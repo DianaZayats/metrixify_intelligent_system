@@ -1,20 +1,50 @@
+# --- Secrets (never commit) ---
+.env
+.env.*
+!.env.example
+
+# Keys / certs
+*.pem
+*.key
+*.p12
+secrets/
+
+# --- Dependencies & build ---
 node_modules/
 dist/
 build/
-.env
-.env.local
-*.log
-.DS_Store
-coverage/
 .vite/
 *.tsbuildinfo
 .prisma/
-exports/
+coverage/
+.turbo/
+.cache/
 
-# Internal / thesis drafts (keep locally, not in repo)
+# --- Logs & temp ---
+*.log
+npm-debug.log*
+*.tmp
+*.bak
+*~
+
+# --- Data exports (may contain user data) ---
+exports/
+*.sql
+*.sqlite
+*.db
+
+# --- Internal / thesis drafts (local only) ---
 docs/_diploma_*
 docs/_docx_tmp/
 docs/diploma-chapter-*.md
 
-# Editor / IDE
+# --- Editor / IDE ---
 .cursor/
+.idea/
+*.swp
+*.swo
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -199,7 +199,7 @@
   "login": {
     "title": "Sign in",
     "intro": "Use your Telegram bot to open a one-time sign-in link.",
-    "step1": "Open Metrixify in Telegram.",
+    "step1": "Open {bot} in Telegram.",
     "step2": "Send /login or tap Web sign-in.",
     "step3": "Open the link in this browser.",
     "signedOut": "You have been signed out."
